@@ -51,15 +51,15 @@ export const LiveVisualizationSlide: React.FC<LiveVisualizationSlideProps> = ({
         />
         
         <div className="flex-1 grid grid-cols-4 gap-4">
-          {/* Left side - Grid visualization (now larger) */}
+          {/* Left side - Grid visualization */}
           <div className="col-span-3 bg-white rounded-lg border p-2">
             <div className="text-sm font-medium text-center mb-1 text-slate-500">
               Watch how ants (trucks) explore the city and strengthen the optimal route over time
             </div>
             <CityGrid 
               simulation={simulation}
-              width={600} 
-              height={420} // Increased from 400 to 420 for more space
+              width={580} // Reduced from 600 to 580
+              height={400} // Reduced from 420 to 400
             />
           </div>
           
@@ -91,33 +91,33 @@ export const LiveVisualizationSlide: React.FC<LiveVisualizationSlideProps> = ({
               <div className="flex items-center justify-between mb-2">
                 <h3 className="text-md font-medium">Legend</h3>
               </div>
-              <div className="space-y-3 text-sm">
+              <div className="space-y-2 text-sm"> {/* Reduced spacing from space-y-3 to space-y-2 */}
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-teal-600"></div>
+                  <div className="w-3 h-3 rounded-full bg-teal-600"></div> {/* Reduced from w-4 h-4 to w-3 h-3 */}
                   <span>Depot (Starting Point)</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-red-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-red-500"></div> {/* Reduced from w-4 h-4 to w-3 h-3 */}
                   <span>High Waste Bins</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-amber-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-amber-500"></div> {/* Reduced from w-4 h-4 to w-3 h-3 */}
                   <span>Medium Waste Bins</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-slate-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-slate-500"></div> {/* Reduced from w-4 h-4 to w-3 h-3 */}
                   <span>Low Waste Bins</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-purple-600"></div>
+                  <div className="w-3 h-3 rounded-full bg-purple-600"></div> {/* Reduced from w-4 h-4 to w-3 h-3 */}
                   <span>Ants (Trucks)</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-12 h-2 bg-blue-400 rounded"></div>
+                  <div className="w-10 h-2 bg-blue-400 rounded"></div> {/* Reduced from w-12 to w-10 */}
                   <span>Pheromone Trails</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-12 h-2 border-2 border-dashed border-teal-500 rounded"></div>
+                  <div className="w-10 h-2 border-2 border-dashed border-teal-500 rounded"></div> {/* Reduced from w-12 to w-10 */}
                   <span>Best Route Found</span>
                 </div>
               </div>
