@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import CityGrid from "@/components/CityGrid";
 import ControlPanel from "@/components/ControlPanel";
+import ACOPresentation from "@/components/ACOPresentation";
 import { ACOParameters, SimulationState } from "@/types";
 import { 
   initializeSimulation, 
@@ -11,6 +12,7 @@ import {
 } from "@/utils/antColonyOptimization";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useToast } from "@/hooks/use-toast";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Index = () => {
   const isMobile = useIsMobile();
@@ -32,6 +34,9 @@ const Index = () => {
   const [isRunning, setIsRunning] = useState(false);
   const [animationFrameId, setAnimationFrameId] = useState<number | null>(null);
   const [lastUpdateTime, setLastUpdateTime] = useState(0);
+  
+  // Active tab
+  const [activeTab, setActiveTab] = useState<string>("visualizer");
 
   // Initialize simulation when parameters change
   useEffect(() => {
@@ -125,48 +130,76 @@ const Index = () => {
           </p>
         </div>
 
-        <div className={`grid ${isMobile ? "grid-cols-1" : "grid-cols-3"} gap-4`}>
-          {/* City Grid Visualization */}
-          <div className={`${isMobile ? "" : "col-span-2"} bg-white rounded-lg shadow-sm border`}>
-            <CityGrid 
-              simulation={simulation} 
-              width={isMobile ? 350 : 700} 
-              height={500}
-            />
-          </div>
+        <Tabs defaultValue={activeTab} onValueChange={setActiveTab} className="w-full">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="presentation">Interactive Presentation</TabsTrigger>
+            <TabsTrigger value="visualizer">ACO Visualizer</TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="presentation" className="mt-4">
+            <div className="bg-white rounded-lg shadow-sm border" style={{ height: '70vh' }}>
+              <ACOPresentation
+                simulation={simulation}
+                acoParams={acoParams}
+                updateAcoParams={updateAcoParams}
+                isRunning={isRunning}
+                onPlay={handlePlay}
+                onPause={handlePause}
+                onStep={handleStep}
+                onReset={handleReset}
+                simulationSpeed={simulationSpeed}
+                onSpeedChange={handleSpeedChange}
+                cityCount={cityCount}
+                onCityCountChange={handleCityCountChange}
+              />
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="visualizer" className="mt-4">
+            <div className={`grid ${isMobile ? "grid-cols-1" : "grid-cols-3"} gap-4`}>
+              {/* City Grid Visualization */}
+              <div className={`${isMobile ? "" : "col-span-2"} bg-white rounded-lg shadow-sm border`}>
+                <CityGrid 
+                  simulation={simulation} 
+                  width={isMobile ? 350 : 700} 
+                  height={500}
+                />
+              </div>
 
-          {/* Control Panel */}
-          <div className="bg-white rounded-lg shadow-sm border p-4">
-            <ControlPanel
-              simulation={simulation}
-              acoParams={acoParams}
-              updateAcoParams={updateAcoParams}
-              isRunning={isRunning}
-              onPlay={handlePlay}
-              onPause={handlePause}
-              onStep={handleStep}
-              onReset={handleReset}
-              simulationSpeed={simulationSpeed}
-              onSpeedChange={handleSpeedChange}
-              cityCount={cityCount}
-              onCityCountChange={handleCityCountChange}
-            />
-          </div>
-        </div>
+              {/* Control Panel */}
+              <div className="bg-white rounded-lg shadow-sm border p-4">
+                <ControlPanel
+                  simulation={simulation}
+                  acoParams={acoParams}
+                  updateAcoParams={updateAcoParams}
+                  isRunning={isRunning}
+                  onPlay={handlePlay}
+                  onPause={handlePause}
+                  onStep={handleStep}
+                  onReset={handleReset}
+                  simulationSpeed={simulationSpeed}
+                  onSpeedChange={handleSpeedChange}
+                  cityCount={cityCount}
+                  onCityCountChange={handleCityCountChange}
+                />
+              </div>
+            </div>
 
-        <div className="bg-white p-4 rounded-lg shadow-sm border text-sm text-slate-600">
-          <h3 className="font-medium mb-2">How it works:</h3>
-          <p className="mb-2">
-            This visualization demonstrates the Ant Colony Optimization algorithm for waste collection in smart cities:
-          </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li>Blue dots are waste bins with varying waste levels</li>
-            <li>Purple trucks are ants (collection vehicles) finding routes</li>
-            <li>Blue lines show pheromone trails - brighter means stronger</li>
-            <li>Green dashed line shows the current best route</li>
-            <li>Adjust parameters to see how they affect route optimization</li>
-          </ul>
-        </div>
+            <div className="bg-white p-4 rounded-lg shadow-sm border text-sm text-slate-600 mt-4">
+              <h3 className="font-medium mb-2">How it works:</h3>
+              <p className="mb-2">
+                This visualization demonstrates the Ant Colony Optimization algorithm for waste collection in smart cities:
+              </p>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>Blue dots are waste bins with varying waste levels</li>
+                <li>Purple trucks are ants (collection vehicles) finding routes</li>
+                <li>Blue lines show pheromone trails - brighter means stronger</li>
+                <li>Green dashed line shows the current best route</li>
+                <li>Adjust parameters to see how they affect route optimization</li>
+              </ul>
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
