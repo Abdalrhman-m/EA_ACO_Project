@@ -6,14 +6,14 @@ import { SimulationState, ACOParameters } from "../types";
 import RouteChart from "./RouteChart";
 import SimulationControls from "./SimulationControls";
 import { Slider } from "@/components/ui/slider";
+import { Badge } from "@/components/ui/badge";
 import { 
-  Badge, 
   Select, 
   SelectTrigger, 
   SelectValue, 
   SelectContent, 
   SelectItem 
-} from "@/components/ui/";
+} from "@/components/ui/select";
 
 interface ControlPanelProps {
   simulation: SimulationState;
