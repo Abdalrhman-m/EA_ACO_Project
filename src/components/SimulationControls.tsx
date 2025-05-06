@@ -56,15 +56,16 @@ const SimulationControls: React.FC<SimulationControlsProps> = ({
             </Button>
           </div>
           <div className="flex items-center gap-4 flex-1 ml-4 max-w-[250px]">
-            <span className="text-sm">Speed</span>
+            <span className="text-sm whitespace-nowrap">Speed</span>
             <Slider
               value={[simulationSpeed]}
-              min={1}
-              max={20}
-              step={1}
+              min={0.5} // Reduced minimum speed from 1 to 0.5 for slower animations
+              max={10}  // Reduced max speed from 20 to 10 for more fine-grained control
+              step={0.5} // Smaller steps for more precise control
               onValueChange={onSpeedChange}
               className="flex-1"
             />
+            <span className="text-xs font-mono w-8 text-right">{simulationSpeed}x</span>
           </div>
         </div>
       </CardContent>

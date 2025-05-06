@@ -24,7 +24,7 @@ const Index = () => {
     iterations: 100,
     antCount: 10
   });
-  const [simulationSpeed, setSimulationSpeed] = useState(5); // iterations per second
+  const [simulationSpeed, setSimulationSpeed] = useState(2); // Slower default speed of 2 instead of 5
   const [cityCount, setCityCount] = useState(10);
 
   // Simulation state
