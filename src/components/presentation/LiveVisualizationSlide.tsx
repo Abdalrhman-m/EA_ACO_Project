@@ -3,7 +3,6 @@ import React from "react";
 import CityGrid from "@/components/CityGrid";
 import { SimulationState, ACOParameters } from "../../types";
 import SimulationControls from "@/components/SimulationControls";
-import RouteChart from "@/components/RouteChart";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 
@@ -52,12 +51,12 @@ export const LiveVisualizationSlide: React.FC<LiveVisualizationSlideProps> = ({
         />
         
         <div className="flex-1 grid grid-cols-4 gap-4">
-          {/* Left side - Grid visualization */}
+          {/* Left side - Grid visualization (now larger) */}
           <div className="col-span-3 bg-white rounded-lg border">
             <CityGrid 
               simulation={simulation}
               width={600} 
-              height={300}
+              height={400} // Increased from 300 to 400
             />
           </div>
           
@@ -112,16 +111,6 @@ export const LiveVisualizationSlide: React.FC<LiveVisualizationSlideProps> = ({
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        
-        <div className="bg-white rounded-lg border p-4">
-          <h3 className="text-md font-medium mb-2">Route Evolution</h3>
-          <div className="h-[150px]">
-            <RouteChart 
-              distanceHistory={simulation.distanceHistory}
-              currentIteration={currentIteration}
-            />
           </div>
         </div>
       </div>

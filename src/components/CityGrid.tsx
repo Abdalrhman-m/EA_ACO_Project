@@ -17,17 +17,18 @@ const CityGrid: React.FC<CityGridProps> = ({ simulation, width, height }) => {
   const getScaleFactor = () => {
     const maxX = Math.max(...cities.map(city => city.x));
     const maxY = Math.max(...cities.map(city => city.y));
-    const scaleX = (width - 60) / maxX;
-    const scaleY = (height - 60) / maxY;
-    return Math.min(scaleX, scaleY);
+    // Reduce the scale to create more space between elements (80% of original)
+    const scaleX = (width - 80) / maxX;
+    const scaleY = (height - 80) / maxY;
+    return Math.min(scaleX, scaleY) * 0.8; // Additional scaling for more spread
   };
 
   // Scale coordinates to fit SVG viewport
   const scaleCoords = (city: City) => {
     const scale = getScaleFactor();
     return {
-      x: city.x * scale + 30,
-      y: city.y * scale + 30,
+      x: city.x * scale + 40, // Increased margin from 30 to 40
+      y: city.y * scale + 40, // Increased margin from 30 to 40
     };
   };
 
@@ -73,7 +74,7 @@ const CityGrid: React.FC<CityGridProps> = ({ simulation, width, height }) => {
                 x2={city2.x}
                 y2={city2.y}
                 stroke="rgba(14, 165, 233, 0.5)"
-                strokeWidth={intensity * 3}
+                strokeWidth={intensity * 4} // Increased from 3 to 4
                 opacity={intensity}
                 className="pheromone-line"
               />
@@ -109,7 +110,7 @@ const CityGrid: React.FC<CityGridProps> = ({ simulation, width, height }) => {
         points={`M ${pathCoordinates}`}
         fill="none"
         stroke="#0d9488"
-        strokeWidth="3"
+        strokeWidth="4" // Increased from 3 to 4
         strokeLinecap="round"
         strokeLinejoin="round"
         className="best-route"
@@ -125,12 +126,12 @@ const CityGrid: React.FC<CityGridProps> = ({ simulation, width, height }) => {
       // Determine city type icon (depot, high waste, low waste)
       let CityIcon = Trash2;
       let iconColor = "#64748b";
-      let size = 24;
+      let size = 30; // Increased from 24 to 30
       
       if (city.id === 0) {
         CityIcon = Building;
         iconColor = "#0d9488";
-        size = 32;
+        size = 38; // Increased from 32 to 38
       } else if (city.wasteLevel > 75) {
         iconColor = "#ef4444"; // Red for high waste
       } else if (city.wasteLevel > 25) {
@@ -147,9 +148,9 @@ const CityGrid: React.FC<CityGridProps> = ({ simulation, width, height }) => {
           <CityIcon size={size} color={iconColor} />
           <text
             x={size/2}
-            y={size + 14}
+            y={size + 16} // Increased from 14 to 16
             textAnchor="middle"
-            fontSize="12"
+            fontSize="14" // Increased from 12 to 14
             fill="#64748b"
           >
             {city.id}
@@ -166,18 +167,19 @@ const CityGrid: React.FC<CityGridProps> = ({ simulation, width, height }) => {
       if (!city) return null;
       
       const { x, y } = scaleCoords(city);
+      const antSize = 26; // Increased from 20 to 26
       
       return (
-        <g key={`ant-${ant.id}`} className="ant" transform={`translate(${x - 10}, ${y - 10})`}>
+        <g key={`ant-${ant.id}`} className="ant" transform={`translate(${x - antSize/2}, ${y - antSize/2})`}>
           <title>Ant {ant.id} at City {ant.currentCityId}</title>
-          <Truck size={20} color="#7e22ce" />
+          <Truck size={antSize} color="#7e22ce" />
         </g>
       );
     });
   };
 
   return (
-    <div className="border rounded-lg shadow-md bg-white p-2 w-full h-full overflow-hidden">
+    <div className="border rounded-lg shadow-md bg-white p-4 w-full h-full overflow-hidden">
       <svg 
         ref={svgRef}
         width={width} 
