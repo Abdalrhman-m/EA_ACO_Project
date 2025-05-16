@@ -9,16 +9,16 @@ export const WhatIsACOSlide: React.FC = () => {
       <div className="flex-1 flex items-center justify-center mb-6">
         <div className="relative w-full max-w-lg h-64">
           {/* Nest */}
-          <div className="absolute left-8 top-1/2 transform -translate-y-1/2 w-16 h-16 rounded-full bg-amber-100 border-2 border-amber-300 flex items-center justify-center">
+          <div className="absolute left-8 top-1/2 transform -translate-y-1/2 w-16 h-16 rounded-full bg-amber-100 border-2 border-amber-300 flex items-center justify-center shadow-md">
             <span className="text-2xl">🏠</span>
           </div>
           
           {/* Food sources */}
-          <div className="absolute right-8 top-16 w-12 h-12 rounded-full bg-teal-100 border-2 border-teal-300 flex items-center justify-center">
+          <div className="absolute right-8 top-16 w-12 h-12 rounded-full bg-teal-100 border-2 border-teal-300 flex items-center justify-center shadow-md animate-pulse">
             <span className="text-xl">🍎</span>
           </div>
           
-          <div className="absolute right-16 bottom-8 w-12 h-12 rounded-full bg-teal-100 border-2 border-teal-300 flex items-center justify-center">
+          <div className="absolute right-16 bottom-8 w-12 h-12 rounded-full bg-teal-100 border-2 border-teal-300 flex items-center justify-center shadow-md animate-pulse">
             <span className="text-xl">🍞</span>
           </div>
           
@@ -61,6 +61,10 @@ export const WhatIsACOSlide: React.FC = () => {
           <div className="absolute left-1/4 top-1/4 w-4 h-4 bg-purple-800 rounded-full animate-ping" style={{animationDuration: "3s"}}></div>
           <div className="absolute left-1/2 top-1/3 w-3 h-3 bg-purple-800 rounded-full animate-ping" style={{animationDuration: "4s", animationDelay: "1s"}}></div>
           <div className="absolute left-2/3 bottom-1/3 w-3 h-3 bg-purple-800 rounded-full animate-ping" style={{animationDuration: "3.5s", animationDelay: "0.5s"}}></div>
+          
+          {/* Additional animated ants */}
+          <div className="absolute right-1/3 top-1/2 w-3 h-3 bg-purple-800 rounded-full animate-ping" style={{animationDuration: "2.5s", animationDelay: "0.7s"}}></div>
+          <div className="absolute right-1/2 bottom-1/4 w-3 h-3 bg-purple-800 rounded-full animate-ping" style={{animationDuration: "3.2s", animationDelay: "1.2s"}}></div>
         </div>
       </div>
       
@@ -77,6 +81,13 @@ export const WhatIsACOSlide: React.FC = () => {
           <li>Pheromones evaporate - weak paths fade away</li>
           <li>Eventually, most ants converge on optimal route</li>
         </ul>
+        
+        <div className="mt-2 bg-blue-50 border border-blue-100 rounded-lg p-3 shadow-sm">
+          <p className="text-sm text-blue-800">
+            In our waste collection simulation, the ants are trucks finding the most efficient routes
+            between waste bins in a smart city.
+          </p>
+        </div>
       </div>
     </div>
   );
