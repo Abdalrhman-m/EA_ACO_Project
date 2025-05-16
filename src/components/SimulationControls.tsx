@@ -33,7 +33,7 @@ const SimulationControls: React.FC<SimulationControlsProps> = ({
               variant="outline"
               size="icon"
               onClick={isRunning ? onPause : onPlay}
-              className="h-8 w-8" {/* Reduced from h-9 w-9 to h-8 w-8 */}
+              className="h-8 w-8" /* Reduced from h-9 w-9 to h-8 w-8 */
             >
               {isRunning ? <Pause size={16} /> : <Play size={16} />} {/* Reduced icon size from 18 to 16 */}
             </Button>
@@ -42,7 +42,7 @@ const SimulationControls: React.FC<SimulationControlsProps> = ({
               size="icon"
               onClick={onStep}
               disabled={isRunning}
-              className="h-8 w-8" {/* Reduced from h-9 w-9 to h-8 w-8 */}
+              className="h-8 w-8" /* Reduced from h-9 w-9 to h-8 w-8 */
             >
               <StepForward size={16} /> {/* Reduced icon size from 18 to 16 */}
             </Button>
@@ -50,7 +50,7 @@ const SimulationControls: React.FC<SimulationControlsProps> = ({
               variant="outline"
               size="icon"
               onClick={onReset}
-              className="h-8 w-8" {/* Reduced from h-9 w-9 to h-8 w-8 */}
+              className="h-8 w-8" /* Reduced from h-9 w-9 to h-8 w-8 */
             >
               <RotateCcw size={16} /> {/* Reduced icon size from 18 to 16 */}
             </Button>
